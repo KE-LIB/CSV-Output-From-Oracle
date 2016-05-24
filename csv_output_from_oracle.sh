@@ -12,6 +12,7 @@
 	if [ $month == "08" ] || [ $month == "09" ] || [ $month == "10" ] || [ $month == "11" ] || [ $month == "12" ] || [ $month == "01" ]; then
 		semester="'"$(date +%Y)"/"$(echo $(date +%Y -d "+1 years")| cut -d'0' -f 2)"/1'"
 	fi
+	#second semester
 	if [ $month == "02" ] || [ $month == "03" ] || [ $month == "04" ] || [ $month == "05" ] || [ $month == "06" ] || [ $month == "07" ]; then
 			semester="'"$(date +%Y -d "-1 years")"/"$(echo $(date +%Y)| cut -d'0' -f 2)"/2'"
 	fi
@@ -56,4 +57,5 @@ EOF
 	sed -i 's/;[ ]*/;/g' "$targetfile";
 	#add header to first line
 	sed -i -e '1iHEADER1;HEADER2;HEADER3\' $targetfile;
+	# save as unicode to MS Excel rigth encoding 
 	#iconv -f UTF8 -t ISO88592 $targetfile > "ISO88592_$targetfile";
